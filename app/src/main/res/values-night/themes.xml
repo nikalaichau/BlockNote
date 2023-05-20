@@ -1,0 +1,30 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+   <!-- Base application theme. -->
+   <style name="Theme.BlockNote" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
+      <!-- Primary brand color. -->
+      <item name="colorPrimary">@color/my_primary</item>
+      <item name="colorPrimaryVariant">@color/my_primary_variant</item>
+      <item name="colorOnPrimary">@color/black</item>
+
+      <!-- Secondary brand color. -->
+      <item name="colorSecondary">@color/my_secondary</item>
+      <item name="colorSecondaryVariant">@color/my_secondary_variant</item>
+      <item name="colorOnSecondary">@color/white</item>
+      <item name="android:actionBarStyle">@style/myActionBar</item>
+      <!-- Status bar color. -->
+      <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
+      <item name="bottomNavigationStyle">@style/myBottom</item>
+      <item name="drawableTint">@color/white</item>
+      <!-- Customize your theme here. -->
+   </style>
+
+   <style name="myActionBar" parent="@style/Widget.MaterialComponents.ActionBar.Solid">
+      <item name="android:background">@color/my_primary</item>
+      <item name="android:textColor">@color/black</item>
+   </style>
+   <style name="myBottom" parent="@style/Widget.MaterialComponents.BottomNavigationView">
+
+      <item name="itemTextColor">@color/white</item>
+      <item name="itemIconTint">@color/white</item>
+   </style>
+</resources>

@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">Блокнот</string>
+    <string name="login">Войти</string>
+    <string name="log_out">Выйти</string>
+    <string name="register">Регистрация</string>
+    <string name="anon">Анонимно</string>
+    <string name="welcome">Добро пожаловать</string>
+    <string name="password">Пароль</string>
+    <string name="about">О программе</string>
+
+    <string name="user_email">Email</string>
+    <string name="user_name">Имя</string>
+    <string name="users">Пользователи</string>
+
+    <string name="menu_shared">Общие записки</string>
+    <string name="menu_home">Дом</string>
+    <string name="menu_add">Создать</string>
+    <string name="settings">Настройки</string>
+    <string name="profile">Профиль</string>
+
+    <string name="note_title">Название</string>
+    <string name="note_content">Содержимое</string>
+
+    <string name="note">NoteModel</string>
+    <string name="image">Изображение</string>
+    <string name="search">Поиск</string>
+    <string name="language">Язык</string>
+
+    <string name="english">Английский</string>
+    <string name="russian">Русский</string>
+
+    <string name="add">Добавить</string>
+    <string name="add_image">Добавить изображение</string>
+    <string name="update">Обновить</string>
+    <string name="delete">Удалить</string>
+    <string name="share">Поделиться</string>
+    <string name="create">Создать заметку</string>
+
+
+    <string name="error_no_data">Введите данные</string>
+    <string name="error_update">Ошибка обновления</string>
+    <string name="error_upload">Ошибка выгрузки</string>
+    <string name="error_create">Ошибка создания</string>
+    <string name="error_delete">Ошибка удаления</string>
+    <string name="error_access">Ошибка доступа</string>
+    <string name="error_get_data">Ошибка получения данных</string>
+    <string name="message_success">Успешно</string>
+    <string name="message_loading">Загрузка</string>
+
+    <string name="about_text">Данная программа разработана студентов группы 083871 Николайчевым Максимом в рамках курсовой работы</string>
+
+    <string name="message_anon">Только авторизованные пользователи могут просматривать общие заметки</string>
+
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="share_to">Поделиться с </string>
+</resources>

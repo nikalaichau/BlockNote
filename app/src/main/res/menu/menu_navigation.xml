@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_add"
+        android:title="@string/add"
+        android:icon="@drawable/round_add_24"/>
+    <item
+        android:id="@+id/menu_main"
+        android:title="@string/menu_home"
+        android:icon="@drawable/round_home_24"/>
+    <item
+        android:id="@+id/menu_shared"
+        android:title="@string/menu_shared"
+        android:icon="@drawable/round_folder_shared_24"/>
+    <item
+        android:id="@+id/menu_users"
+        android:title="@string/users"
+        android:icon="@drawable/round_people_alt_24"/>
+
+    <item
+        android:id="@+id/menu_settings"
+        android:title="@string/settings"
+        android:icon="@drawable/round_settings_24"/>
+
+
+</menu>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:orientation="vertical"
+    tools:context=".CreateNoteActivity"
+    >
+
+
+
+      <ScrollView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="1">
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/images_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible"
+                >
+                  <ImageView
+                      android:id="@+id/note_image"
+                      android:layout_margin="5dp"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center" />
+
+
+
+
+                  <androidx.appcompat.widget.AppCompatButton
+                      android:id="@+id/btn_image"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_margin="5dp"
+                      android:background="@drawable/primary_bg"
+                      android:drawableLeft="@drawable/round_add_24"
+                      android:text="@string/add_image"
+                      android:textAllCaps="false" />
+
+
+
+
+
+                  <androidx.appcompat.widget.AppCompatButton
+                      android:id="@+id/btn_remove_image"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_margin="5dp"
+                      android:background="@drawable/red_bg"
+                      android:drawableLeft="@drawable/round_delete_24"
+                      android:text="@string/delete"
+                      android:textAllCaps="false" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/my_secondary"
+                android:layout_margin="10dp"/>
+
+
+            <EditText
+                android:id="@+id/note_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:inputType="textPersonName"
+                android:background="@null"
+                android:hint="@string/note_title"
+                android:textStyle="bold"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/my_secondary"
+                android:layout_margin="10dp"/>
+
+
+            <EditText
+                android:id="@+id/note_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:minLines="10"
+                android:hint="@string/note_content"
+                android:textSize="18sp"
+                android:background="@null"/>
+
+         </LinearLayout>
+      </ScrollView>
+
+   <androidx.appcompat.widget.AppCompatButton
+       android:id="@+id/add"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_gravity="bottom"
+       android:layout_margin="10dp"
+       android:background="@drawable/secondary_bg"
+       android:text="@string/add"
+
+       tools:layout_editor_absoluteX="10dp" />
+</LinearLayout>

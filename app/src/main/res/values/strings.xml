@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">BlockNote</string>
+    <string name="login">Login</string>
+    <string name="log_out">Log out</string>
+    <string name="welcome">Welcome</string>
+    <string name="password">Password</string>
+    <string name="about">About</string>
+
+    <string name="register">Register</string>
+    <string name="anon">Anonymously</string>
+    <string name="users">Users</string>
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
+
+
+    <string name="note_title">Title</string>
+    <string name="note_content">Content</string>
+    <string name="user_email">Email: </string>
+    <string name="user_name">Name: </string>
+    <string name="note">NoteModel</string>
+    <string name="image">Image</string>
+    <string name="search">Search</string>
+    <string name="language">Language</string>
+
+    <string name="english">English</string>
+    <string name="russian">Russian</string>
+
+    <string name="add">Add</string>
+    <string name="add_image">Add image</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
+    <string name="create">Create note</string>
+
+
+    <string name="error_no_data">Input data</string>
+    <string name="error_update">Update error</string>
+    <string name="error_upload">Upload error</string>
+    <string name="error_create">Create error</string>
+    <string name="error_delete">Delete error</string>
+    <string name="error_access">Accessing error</string>
+    <string name="error_get_data">Get data error</string>
+    <string name="message_success">Successful</string>
+    <string name="message_loading">Loading</string>
+
+    <string name="about_text">This program was developed by students of the group 083871 Maxim Nikolaychev as part of the course work</string>
+
+    <string name="message_anon">Only authorized users can see shared notes</string>
+
+
+    <string name="menu_shared">Shared notes</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_add">Add</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="share_to">Share to</string>
+</resources>

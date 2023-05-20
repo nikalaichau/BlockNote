@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "150196474446",
+    "project_id": "blocknote-55409",
+    "storage_bucket": "blocknote-55409.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150196474446:android:69e7edadbfc8eb025ce91f",
+        "android_client_info": {
+          "package_name": "com.example.blocknote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150196474446-bc4bo4sng6m07iuctohn0tjrdkkfgmv3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.blocknote",
+            "certificate_hash": "78311395ff1926419ff4a85a343feead42114559"
+          }
+        },
+        {
+          "client_id": "150196474446-e3igogjc05vjmi0d67ib6h6fg9tpq0fq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeVoW10m_WFmero0YSSj9Al5bPJ7QdPN0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "150196474446-e3igogjc05vjmi0d67ib6h6fg9tpq0fq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
