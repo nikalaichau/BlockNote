@@ -2,8 +2,6 @@ package com.example.blocknote.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,26 +24,19 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.example.blocknote.CreateNoteActivity;
 import com.example.blocknote.R;
-import com.squareup.picasso.Picasso;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class NoteAdapter extends FirestoreRecyclerAdapter<NoteModel, NoteAdapter.ViewHolder> {
-   
+
+   private final Boolean shared;
    private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
    Activity activity;
    FragmentManager fm;
-   /**
-    * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
-    * FirestoreRecyclerOptions} for configuration options.
-    *
-    * @param options
-    */
-   public NoteAdapter(@NonNull FirestoreRecyclerOptions<NoteModel> options, Activity activity, FragmentManager fm) {
+
+   public NoteAdapter(@NonNull FirestoreRecyclerOptions<NoteModel> options, Boolean shared, Activity activity, FragmentManager fm) {
       super(options);
       this.activity = activity;
       this.fm = fm;
+      this.shared = shared;
    }
 
    @Override
@@ -76,6 +67,14 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<NoteModel, NoteAdapter
          }
       });
 
+
+      if (shared){
+         viewHolder.btn_share.setVisibility(View.GONE);
+      }else {
+         viewHolder.btn_share.setVisibility(View.VISIBLE);
+      }
+
+
       viewHolder.btn_edit.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
@@ -99,10 +98,8 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<NoteModel, NoteAdapter
          @Override
          public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-            String shared_to = documentSnapshot.getString("shared_to");
-
-            if (shared_to == null){
-               mFirestore.collection("note").document(id).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            if (shared){
+               mFirestore.collection("note").document(id).update("shared_to", null).addOnSuccessListener(new OnSuccessListener<Void>() {
                   @Override
                   public void onSuccess(Void unused) {
                      Toast.makeText(activity, R.string.message_success, Toast.LENGTH_SHORT).show();
@@ -114,7 +111,7 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<NoteModel, NoteAdapter
                   }
                });
             }else {
-               mFirestore.collection("note").document(id).update("shared_to", null).addOnSuccessListener(new OnSuccessListener<Void>() {
+               mFirestore.collection("note").document(id).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                   @Override
                   public void onSuccess(Void unused) {
                      Toast.makeText(activity, R.string.message_success, Toast.LENGTH_SHORT).show();

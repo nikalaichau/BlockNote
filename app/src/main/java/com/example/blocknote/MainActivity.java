@@ -3,7 +3,6 @@ package com.example.blocknote;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity{
    FirebaseFirestore mFirestore;
    FirebaseAuth mAuth;
    SearchView search_view;
-   Query query;
+
 
    @SuppressLint("NotifyDataSetChanged")
    @Override
@@ -94,11 +93,11 @@ public class MainActivity extends AppCompatActivity{
       mRecycler = findViewById(R.id.recyclerViewSingleNote);
       mRecycler.setLayoutManager(new LinearLayoutManager(this));
       Query query = mFirestore.collection("note").whereEqualTo("id_user", mAuth.getCurrentUser().getUid());
-
+      Boolean shared = false;
       FirestoreRecyclerOptions<NoteModel> firestoreRecyclerOptions =
               new FirestoreRecyclerOptions.Builder<NoteModel>().setQuery(query, NoteModel.class).build();
 
-      mAdapter = new NoteAdapter(firestoreRecyclerOptions, this, getSupportFragmentManager());
+      mAdapter = new NoteAdapter(firestoreRecyclerOptions, shared, this, getSupportFragmentManager());
       mAdapter.notifyDataSetChanged();
       mRecycler.setAdapter(mAdapter);
    }
@@ -125,11 +124,11 @@ public class MainActivity extends AppCompatActivity{
       mRecycler = findViewById(R.id.recyclerViewSingleNote);
       mRecycler.setLayoutManager(new LinearLayoutManager(this));
       Query query = mFirestore.collection("note").whereEqualTo("id_user", mAuth.getCurrentUser().getUid()).orderBy("title").startAt(s).endAt(s+"~");
-
+      Boolean shared = false;
       FirestoreRecyclerOptions<NoteModel> firestoreRecyclerOptions =
               new FirestoreRecyclerOptions.Builder<NoteModel>().setQuery(query, NoteModel.class).build();
 
-      mAdapter = new NoteAdapter(firestoreRecyclerOptions, this, getSupportFragmentManager());
+      mAdapter = new NoteAdapter(firestoreRecyclerOptions, shared, this, getSupportFragmentManager());
       mAdapter.startListening();
       mRecycler.setAdapter(mAdapter);
 

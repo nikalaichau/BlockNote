@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
     app:cardCornerRadius="20dp"
 
-    app:cardElevation="5dp"
+
     >
 
    <ImageView
@@ -24,7 +23,7 @@
 
 
       <LinearLayout
-          android:layout_width="match_parent"
+          android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_weight="1"
           android:orientation="vertical">
@@ -44,7 +43,7 @@
 
             <TextView
                 android:id="@+id/note_content"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/note_content"
@@ -64,11 +63,10 @@
           android:layout_height="wrap_content"
           android:background="@drawable/secondary_bg"
           android:padding="5dp"
-          app:srcCompat="@drawable/round_remove_red_eye_24" />
+          app:srcCompat="@drawable/round_remove_red_eye_24"
+          android:layout_margin="5dp"/>
 
-      <Space
-          android:layout_width="10dp"
-          android:layout_height="wrap_content" />
+
 
       <ImageView
           android:id="@+id/btn_edit"
@@ -76,11 +74,9 @@
           android:layout_height="wrap_content"
           android:background="@drawable/secondary_bg"
           android:padding="5dp"
-          app:srcCompat="@drawable/round_edit_24" />
+          app:srcCompat="@drawable/round_edit_24"
+          android:layout_margin="5dp"/>
 
-      <Space
-          android:layout_width="10dp"
-          android:layout_height="wrap_content" />
 
       <ImageView
           android:id="@+id/btn_share"
@@ -88,11 +84,10 @@
           android:layout_height="wrap_content"
           android:background="@drawable/secondary_bg"
           android:padding="5dp"
-          app:srcCompat="@drawable/round_share_24" />
+          app:srcCompat="@drawable/round_share_24"
+          android:layout_margin="5dp"/>
 
-      <Space
-          android:layout_width="10dp"
-          android:layout_height="wrap_content" />
+
 
 
       <ImageView
@@ -101,7 +96,8 @@
           android:layout_height="wrap_content"
           android:background="@drawable/red_bg"
           android:padding="5dp"
-          app:srcCompat="@drawable/round_delete_24" />
+          app:srcCompat="@drawable/round_delete_24"
+          android:layout_margin="5dp"/>
 
    </LinearLayout>
 </androidx.cardview.widget.CardView>

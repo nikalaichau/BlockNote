@@ -3,14 +3,11 @@ package com.example.blocknote;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +18,6 @@ import com.example.blocknote.adapter.NoteAdapter;
 
 import com.example.blocknote.model.NoteModel;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,9 +37,6 @@ public class SharedActivity extends AppCompatActivity{
 
    TextView message;
    LinearLayout linearLayout;
-
-   Query query;
-    static String email;
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -124,15 +117,16 @@ public class SharedActivity extends AppCompatActivity{
    private void setUpRecyclerView( ) {
 
 
-
       mRecycler = findViewById(R.id.recyclerViewSingleNote);
       mRecycler.setLayoutManager(new LinearLayoutManager(this));
       Query query = mFirestore.collection("note").whereEqualTo("shared_to", mAuth.getCurrentUser().getUid());
+      Boolean shared = true;
+
 
       FirestoreRecyclerOptions<NoteModel> firestoreRecyclerOptions =
               new FirestoreRecyclerOptions.Builder<NoteModel>().setQuery(query, NoteModel.class).build();
 
-      mAdapter = new NoteAdapter(firestoreRecyclerOptions, this, getSupportFragmentManager());
+      mAdapter = new NoteAdapter(firestoreRecyclerOptions,shared, this, getSupportFragmentManager());
       mAdapter.notifyDataSetChanged();
       mRecycler.setAdapter(mAdapter);
    }
@@ -160,11 +154,11 @@ public class SharedActivity extends AppCompatActivity{
       mRecycler = findViewById(R.id.recyclerViewSingleNote);
       mRecycler.setLayoutManager(new LinearLayoutManager(this));
       Query query = mFirestore.collection("note").whereEqualTo("shared_to", mAuth.getCurrentUser().getUid()).orderBy("shared_to").startAt(s).endAt(s+"~");
-
+      Boolean shared = true;
       FirestoreRecyclerOptions<NoteModel> firestoreRecyclerOptions =
               new FirestoreRecyclerOptions.Builder<NoteModel>().setQuery(query, NoteModel.class).build();
 
-      mAdapter = new NoteAdapter(firestoreRecyclerOptions, this, getSupportFragmentManager());
+      mAdapter = new NoteAdapter(firestoreRecyclerOptions, shared, this, getSupportFragmentManager());
       mAdapter.startListening();
       mRecycler.setAdapter(mAdapter);
 
