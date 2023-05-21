@@ -47,7 +47,8 @@
                     android:gravity="top"
                     android:minLines="10"
                     android:textSize="18sp"
-                    android:layout_marginBottom="60dp" />
+                    android:layout_marginBottom="60dp"
+                    android:textIsSelectable="true"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
