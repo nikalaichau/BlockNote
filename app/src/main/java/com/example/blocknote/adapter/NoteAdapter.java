@@ -50,7 +50,6 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<NoteModel, NoteAdapter
       viewHolder.btn_view.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-
             Intent i = new Intent(activity, PreviewActivity.class);
             i.putExtra("id_note", id);
             activity.startActivity(i);
@@ -67,18 +66,14 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<NoteModel, NoteAdapter
          }
       });
 
-
       if (shared){
          viewHolder.btn_share.setVisibility(View.GONE);
       }else {
          viewHolder.btn_share.setVisibility(View.VISIBLE);
       }
-
-
       viewHolder.btn_edit.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-
             Intent i = new Intent(activity, CreateNoteActivity.class);
             i.putExtra("id_note", id);
             activity.startActivity(i);
@@ -97,7 +92,6 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<NoteModel, NoteAdapter
       mFirestore.collection("note").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
          @Override
          public void onSuccess(DocumentSnapshot documentSnapshot) {
-
             if (shared){
                mFirestore.collection("note").document(id).update("shared_to", null).addOnSuccessListener(new OnSuccessListener<Void>() {
                   @Override
@@ -123,17 +117,12 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<NoteModel, NoteAdapter
                   }
                });
             }
-
-
          }
       }).addOnFailureListener(new OnFailureListener() {
          @Override
          public void onFailure(@NonNull Exception e) {
-
          }
       });
-
-
    }
 
    @NonNull

@@ -110,12 +110,9 @@ public class MainActivity extends AppCompatActivity{
 
             return false;
          }
-
          @Override
          public boolean onQueryTextChange(String s) {
             textSearch(s);
-
-
             return false;
          }
       });
@@ -127,13 +124,9 @@ public class MainActivity extends AppCompatActivity{
       Boolean shared = false;
       FirestoreRecyclerOptions<NoteModel> firestoreRecyclerOptions =
               new FirestoreRecyclerOptions.Builder<NoteModel>().setQuery(query, NoteModel.class).build();
-
       mAdapter = new NoteAdapter(firestoreRecyclerOptions, shared, this, getSupportFragmentManager());
       mAdapter.startListening();
       mRecycler.setAdapter(mAdapter);
-
-
-
    }
 
    @Override

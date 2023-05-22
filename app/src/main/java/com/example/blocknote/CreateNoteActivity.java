@@ -43,12 +43,9 @@ public class CreateNoteActivity extends AppCompatActivity {
    private FirebaseAuth mAuth;
 
    StorageReference storageReference;
-   String storage_path = "note/*";
 
-   private static final int COD_SEL_STORAGE = 200;
    private static final int COD_SEL_IMAGE = 300;
 
-   private Uri image_url;
    String image = "image";
    String idd;
 
@@ -62,8 +59,6 @@ public class CreateNoteActivity extends AppCompatActivity {
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
       progressDialog = new ProgressDialog(this);
       String id = getIntent().getStringExtra("id_note");
-      String image = getIntent().getStringExtra("image");
-      Log.d("AAAA","image");
       mfirestore = FirebaseFirestore.getInstance();
       mAuth = FirebaseAuth.getInstance();
       storageReference = FirebaseStorage.getInstance().getReference();
@@ -83,36 +78,27 @@ public class CreateNoteActivity extends AppCompatActivity {
          @Override
          public void onClick(View view) {
             uploadImage();
-
+         }
+      });
+      btn_image_remove.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("image", "");
+            mfirestore.collection("note").document(idd).update(map);
+            Toast.makeText(CreateNoteActivity.this, R.string.message_success, Toast.LENGTH_SHORT).show();
+            recreate();
          }
       });
 
 
-
-
-         btn_image_remove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               HashMap<String, Object> map = new HashMap<>();
-               map.put("image", "");
-               mfirestore.collection("note").document(idd).update(map);
-               Toast.makeText(CreateNoteActivity.this, R.string.message_success, Toast.LENGTH_SHORT).show();
-               recreate();
-            }
-         });
-
-
       if (id == null || id == ""){
          linearLayout_image_btn.setVisibility(View.GONE);
-
          btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                String notetitle = title.getText().toString().trim();
-
                String notecontent = content.getText().toString().trim();
-
-
                if(notetitle.isEmpty() || notecontent.isEmpty()){
                   Toast.makeText(getApplicationContext(), R.string.error_no_data, Toast.LENGTH_SHORT).show();
                }else{
@@ -128,10 +114,7 @@ public class CreateNoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                String notetitle = title.getText().toString().trim();
-
                String notecontent = content.getText().toString().trim();
-
-
                if(notetitle.isEmpty() || notecontent.isEmpty()){
                   Toast.makeText(getApplicationContext(), R.string.error_no_data, Toast.LENGTH_SHORT).show();
                }else{
@@ -155,7 +138,7 @@ public class CreateNoteActivity extends AppCompatActivity {
    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
       if(resultCode == RESULT_OK){
          if (requestCode == COD_SEL_IMAGE){
-            image_url = data.getData();
+            Uri image_url = data.getData();
             uploadImage(image_url);
          }
       }
@@ -165,14 +148,13 @@ public class CreateNoteActivity extends AppCompatActivity {
    private void uploadImage(Uri image_url) {
       progressDialog.setMessage("Loading");
       progressDialog.show();
-      String rute_storage_image = storage_path + "" + image + "" + mAuth.getUid() +""+ idd;
+      String rute_storage_image =  "|" + image + "|" + mAuth.getUid() +"|"+ idd;
       StorageReference reference = storageReference.child(rute_storage_image);
       reference.putFile(image_url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
          @Override
          public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
             Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
             while (!uriTask.isSuccessful()) {
-               ;
             }
                if (uriTask.isSuccessful()){
                   uriTask.addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -201,8 +183,6 @@ public class CreateNoteActivity extends AppCompatActivity {
       Map<String, Object> map = new HashMap<>();
       map.put("title", notetitle);
       map.put("content", notecontent);
-
-
       mfirestore.collection("note").document(id).update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
          @Override
          public void onSuccess(Void unused) {
@@ -221,7 +201,6 @@ public class CreateNoteActivity extends AppCompatActivity {
    private void postNote(String notetitle, String notecontent) {
       String idUser = mAuth.getCurrentUser().getUid();
       DocumentReference id = mfirestore.collection("note").document();
-
       Map<String, Object> map = new HashMap<>();
       map.put("id_user", idUser);
       map.put("id", id.getId());
@@ -229,8 +208,6 @@ public class CreateNoteActivity extends AppCompatActivity {
       map.put("shared_to", null);
       map.put("image", "");
       map.put("content", notecontent);
-
-
       mfirestore.collection("note").document(id.getId()).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
          @Override
          public void onSuccess(Void unused) {
@@ -250,25 +227,15 @@ public class CreateNoteActivity extends AppCompatActivity {
       mfirestore.collection("note").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
          @Override
          public void onSuccess(DocumentSnapshot documentSnapshot) {
-
             String notetitle = documentSnapshot.getString("title");
-
             String notecontent = documentSnapshot.getString("content");
-
             String imageNote = documentSnapshot.getString("image");
-
-            if (imageNote == ""){
-               btn_image_remove.setVisibility(View.GONE);
-               btn_image_add.setVisibility(View.VISIBLE);
-            }else {
-               btn_image_remove.setVisibility(View.VISIBLE);
-               btn_image_add.setVisibility(View.GONE);
-            }
-
             title.setText(notetitle);
             content.setText(notecontent);
             try {
                if(!imageNote.equals("")){
+                  btn_image_remove.setVisibility(View.VISIBLE);
+                  btn_image_add.setVisibility(View.GONE);
                   Toast toast = Toast.makeText(getApplicationContext(), R.string.message_loading, Toast.LENGTH_SHORT);
                   toast.setGravity(Gravity.TOP,0,200);
                   toast.show();
@@ -276,6 +243,9 @@ public class CreateNoteActivity extends AppCompatActivity {
                           .load(imageNote)
                           .resize(400, 400)
                           .into(image_note);
+               }else{
+                  btn_image_remove.setVisibility(View.GONE);
+                  btn_image_add.setVisibility(View.VISIBLE);
                }
             }catch (Exception e){
                Log.v("Error", "e: " + e);
